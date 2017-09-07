@@ -2,7 +2,8 @@ const zipCodes = require('./lib/zipCodes.js');
 const apiClient = require('./lib/apiClient.js');
 
 exports.sheltersByZip = function helloWorld(req, res) {
-  zip = req.body.result.parameters['zip'] || req.query[zip];
+  const zip = req.body.zip || req.query.zip;
+
   if (zip === undefined || zipCodes === undefined) {
     res.status(500).send('No zip given, or zip code geolocation data unavilable!');
   } else {
