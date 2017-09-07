@@ -9,6 +9,7 @@
     "csv-parse": "^1.2.1"
   },
   "devDependencies": {
+    "eslint": "^4.6.1",
     "express": "^4.15.4"
   },
   "scripts": {
