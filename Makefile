@@ -1,3 +1,9 @@
+serve:
+	node devServer.js
+
+deploy:
+	gcloud beta functions deploy sheltersByZip --stage-bucket irma-response-bot-api --trigger-http
+
 data/zipcodes.csv:
 	wget -O data/US.zip http://download.geonames.org/export/zip/US.zip
 	unzip -d data data/US.zip

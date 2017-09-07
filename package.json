@@ -1,0 +1,27 @@
+{
+  "name": "irma-response-bot-api",
+  "version": "1.0.0",
+  "description": "This is a simple API which converts queries for a ZIP code into a lat/long, and then queries the Irma API with that lat/long.",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "csv": "^1.1.1",
+    "csv-parse": "^1.2.1"
+  },
+  "devDependencies": {
+    "express": "^4.15.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tdooner/irma-response-bot-api.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tdooner/irma-response-bot-api/issues"
+  },
+  "homepage": "https://github.com/tdooner/irma-response-bot-api#readme"
+}
