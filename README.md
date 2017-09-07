@@ -1,5 +1,7 @@
 # Irma Response Bot API
 
+An API for the purposes of creating a chatbot connecting Floridians with shelters and help requests.
+
 This is a simple API which converts queries for a ZIP code into a lat/long, and then queries the Irma API with that lat/long.
 
 Demo:
