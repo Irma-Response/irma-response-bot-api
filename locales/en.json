@@ -1,7 +1,7 @@
 {
   "error": {
     "zip": {
-      "not_found": "Mmm, no pudimos encontrar ese código postal. Por favor asegúrese de que lo escribió correctamente e intente de nuevo."
+      "not_found": "Hm, we aren’t able to find that ZIP code. Please double check that you typed it correctly and try again."
     }
   },
   "shelter": {
