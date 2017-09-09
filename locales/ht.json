@@ -1,0 +1,12 @@
+{
+  "error": {
+    "zip": {
+      "not_found": "Hm, we aren’t able to find that ZIP code. Please double check that you typed it correctly and try again."
+    }
+  },
+  "shelter": {
+    "closest": "Dakò! Men kèk abri nan zòn ou an: {{name}}.\nDirección: {{address}}, {{city}}  {{phone}}.",
+    "none_found": "We couldn't find any open shelters close to you. Check http://irmaresponse.org for additional information or call 2-1-1 or 3-1-1.",
+    "automated_disclaimer": "Bonjou, sa a se yon sèvis otomatik ki ka ede w jwenn yon abri ki disponib. Si sa a se yon ijans, pann leve, li rele 9-1-1. Ki kòd postal ou ye?"
+  }
+}
