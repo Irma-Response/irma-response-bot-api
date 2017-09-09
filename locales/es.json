@@ -5,7 +5,7 @@
     }
   },
   "shelter": {
-    "closest": "Hay unos cuantos albergues en su área inmediato: {{name}}.\nDirección: {{address}}, {{city}} Para más información sobre esta llamada de refugio {{phone}}.",
+    "closest": "Hay unos cuantos albergues en su área inmediata: {{name}}.\nDirección: {{address}}, {{city}} Para más información sobre este refugio llame al {{phone}}.",
     "none_found": "No pudimos encontrar ningún refugio abierto cerca de usted. Consulte IrmaResponse.org para obtener más información adicional o llame al 2-1-1 o 3-1-1.",
     "automated_disclaimer": "Este servicio es automatizado. Si usted requiere primeros auxilios, llame al 9-1-1.\nSi usted está en una zona de evacuación y no tiene transporte hacia un refugio, llame al 1-800-955-5504.\nSi usted tiene problemas con ansiedad o angustia, enviar un texto al 741-741 día o noche para ponerse en contacto con un/a terapeuta profesional de crisis."
   }
