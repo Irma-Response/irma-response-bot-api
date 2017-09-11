@@ -5,8 +5,10 @@
     }
   },
   "shelter": {
-    "closest": "The closest shelter is about {{distance}} away at {{name}}.\nAddress: {{address}}, {{city}}.\nFor more information about this shelter, call {{phone}}.",
+    "closest": "The closest shelter is {{distance}} away at {{name}}.\n\nAddress: {{address}}.\nPhone: {{phone}}\n\nThere are {{more}}",
+    "closest_more": "There are {{numMore}} more shelters within 10 miles. Reply with 'more' to see them.",
     "none_found": "We couldn't find any open shelters close to you. Check IrmaResponse.org for additional information or call 2-1-1 or 3-1-1.",
-    "automated_disclaimer": "This is an automated service. If you need emergency help, call 9-1-1\nIf you are in an evacuation zone and do not have transportation to a shelter, call 1-800-955-5504.\nIf you are having trouble with anxiety or emotional distress, text 741-741 day or night to connect with a professionally trained crisis counselor."
-  }
+    "automated_disclaimer": "This is an automated service. In case of emergency, call 9-1-1. If you need transportation to a shelter, call 1-800-955-5504. For other help and resources, call 2-1-1."
+  },
+  "less than a mile": "less than a mile"
 }
