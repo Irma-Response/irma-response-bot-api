@@ -5,10 +5,14 @@
     }
   },
   "shelter": {
-    "closest": "The closest shelter is {{distance}} away at {{name}}.\n\nAddress: {{address}}.\nPhone: {{phone}}\n\nThere are {{more}}",
-    "closest_more": "There are {{numMore}} more shelters within 10 miles. Reply with 'more' to see them.",
+    "shelter": "{{name}}\nAddress: {{address}}.\nPhone: {{phone}}",
+    "closest": "The closest open shelter is {{distance}} away.\n\n{{shelter}}\n\n{{{more}}}",
+    "closest_more": "There are {{numMore}} more shelters within 10 miles. Reply with \"more\" to see them.\n\n",
+    "closest_next_page": "Here are the next {{num}} closest shelters.\n\n{{shelters}}\n\n{{{more}}}",
     "none_found": "We couldn't find any open shelters close to you. Check IrmaResponse.org for additional information or call 2-1-1 or 3-1-1.",
+    "no_more_shelters": "We couldn't find any more shelters. Check IrmaResponse.org for additional information or call 2-1-1 or 3-1-1.",
     "automated_disclaimer": "This is an automated service. In case of emergency, call 9-1-1. If you need transportation to a shelter, call 1-800-955-5504. For other help and resources, call 2-1-1."
   },
-  "less than a mile": "less than a mile"
+  "less than a mile": "less than a mile",
+  "No zip given, or zip code geolocation data missing.": "No zip given, or zip code geolocation data missing."
 }

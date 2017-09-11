@@ -1,11 +1,10 @@
+const console = require('console');
 const path = require('path');
 
 const i18n = require('i18n');
 
-const apiAiResponseFormatter = require('./lib/apiAiResponseFormatter');
-const apiClient = require('./lib/apiClient.js');
-const parseApiAiBody = require('./lib/parseApiAiBody');
-const zipCodes = require('./lib/zipCodes.js');
+const handleLookupShelter = require('./lib/handleLookupShelter');
+const handleMoreShelters = require('./lib/handleMoreShelters');
 
 i18n.configure({
   indent: '  ',
@@ -14,32 +13,82 @@ i18n.configure({
   directory: path.join(__dirname, '/locales'),
 });
 
-exports.sheltersByZip = function sheltersByZip(req, res) {
-  const parsedRequest = parseApiAiBody(req.body);
-  const zip = req.query.zip || parsedRequest.zip;
-  const lang = parsedRequest.lang || req.query.lang || 'en';
-
-  i18n.setLocale(lang);
-
-  // eslint-disable-next-line
-  console.log('returning results for zip', zip, ', language: ', lang);
-
-  if (zip === undefined || zipCodes === undefined) {
-    res.status(500).send('No zip given, or zip code geolocation data unavilable!');
-  } else if (!(zip in zipCodes)) {
-    res.set('Content-Type', 'application/json');
-    res.send(JSON.stringify(apiAiResponseFormatter.invalidZipCode()));
-    res.status(200).end();
-  } else {
-    const [lat, lon] = zipCodes[zip];
-
-    apiClient.sheltersByLatLon(lat, lon).then(({ shelter }) => {
-      res.set('Content-Type', 'application/json');
-      res.send(JSON.stringify(apiAiResponseFormatter.formatShelterMessage(shelter)));
-      res.status(200).end();
-    }).catch((e) => {
-      res.send(e.message);
-      res.status(500).end();
-    });
+const extractContextParameter = (req, contextName, paramName) => {
+  // developmet mode:
+  //
+  // curl "localhost:3000?context[theContextName][theParamName]=value"
+  if (req.query && req.query.context && req.query.context[contextName]) {
+    return req.query.context[contextName][paramName];
   }
+
+  // production mode:
+  if (!req.body || !req.body.result) {
+    return null;
+  } else {
+    const context = req.body.result.contexts.find(context => context.name == contextName);
+    if (context) {
+      return context.parameters[paramName];
+    } else {
+      return null;
+    }
+  }
+};
+
+exports.sheltersByZip = function sheltersByZip(req, res) {
+  let parsedRequest;
+
+  if (req.query.testAction) {
+    // development mode
+    switch (req.query.testAction) {
+      case 'lookup-shelter':
+        parsedRequest = { method: handleLookupShelter, params: req.query };
+        break;
+      case 'lookup-shelter-more':
+        parsedRequest = { method: handleMoreShelters, params: req.query };
+        break;
+    };
+
+  } else if (req.body && req.body.result) {
+    // production mode
+    switch (req.body.result.action) {
+      case 'lookup-shelter':
+        parsedRequest = {
+          method: handleLookupShelter,
+          params: {
+            zip: req.body.result.parameters.zip,
+            lang: req.body.result.parameters.lang || 'en',
+            shownShelterIds: extractContextParameter(req, 'shownshelterids', 'shownShelterIds') || [],
+          },
+        };
+        break;
+      case 'lookup-shelter-more':
+        parsedRequest = {
+          method: handleMoreShelters,
+          params: {
+            zip: extractContextParameter(req, 'individualneedsshelter-followup', 'zip'),
+            lang: extractContextParameter(req, 'individualneedsshelter-followup', 'lang') || 'en',
+            shownShelterIds: extractContextParameter(req, 'shownshelterids', 'shownShelterIds') || [],
+          },
+        };
+        break;
+    }
+  } else {
+    res.status(400)
+    res.send('Invalid request').end();
+    return;
+  }
+
+  const method = parsedRequest.method;
+  console.log('params', parsedRequest.params);
+  method(parsedRequest.params)
+    .then(({ headers, status, body }) => {
+      res.set(headers);
+      res.status(status);
+      res.send(body).end();
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500);
+      res.send(error.toString()).end();
+    })
 };
