@@ -1,5 +1,5 @@
 serve:
-	node --inspect devServer.js
+	node devServer.js
 
 deploy:
 	gcloud beta functions deploy sheltersByZip --stage-bucket irma-response-bot-api --trigger-http
