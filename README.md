@@ -5,7 +5,7 @@ An API for the purposes of creating a chatbot connecting Floridians with shelter
 This is a simple API which converts queries for a ZIP code into a lat/long, and then queries the Irma API with that lat/long.
 
 Demo:
-https://us-central1-irma-response-bot.cloudfunctions.net/sheltersByZip?zip=34972
+https://us-central1-irma-response-bot.cloudfunctions.net/sheltersByZip?testAction=lookup-shelter&zip=33144&lang=en
 
 ## Installation (Mac osx with Homebrew)
 You will need a version of nodejs installed.
