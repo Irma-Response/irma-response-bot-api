@@ -12,8 +12,6 @@ You will need a version of nodejs installed.
 
 ```bash
 brew cask install google-cloud-sdk
-npm install
-
 gcloud components update && gcloud components install beta
 ```
 
